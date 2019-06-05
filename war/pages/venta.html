@@ -65,7 +65,7 @@
 								ng-change="producto.importe= calculaImporte(producto)"></td>
 							<td><input type="text" ng-model="producto.importe"></td>
 							<td>
-								<button type="button" class="btn btn-default btn-sm"
+								<button type="button" class="btn btn-default btn-sm" ng-disabled ="!indice" ng-enabled="indice"
 									ng-click="agregarDetalle(producto)">
 									<span class="glyphicon glyphicon-plus"></span>
 								</button>
@@ -126,8 +126,8 @@
 						<option value="PUE">Pago en una sola exhibici&oacute;n</option>
 						<option value="PPD">Pago en parcialidades o diferido</option>
 					</select><br>
-				<button class="btn btn-small btn-primary" ng-click="guardarVenta('VENDIDO')">Guardar Venta</button>
-				<button class="btn btn-small btn-info" ng-click="guardarVenta('GENERADO')">Presupuesto</button>
+				<button class="btn btn-small btn-primary" ng-click="guardarVenta('VENDIDO')" ng-disabled="!venta.detalles[0]" ng-enabled = "venta.detalles[0]">Guardar Venta</button>
+				<button class="btn btn-small btn-info" ng-click="guardarVenta('GENERADO')" ng-disabled="!venta.detalles[0]" ng-enabled = "venta.detalles[0]">Presupuesto</button>
 			</div>
 		</div>
 	</div>
