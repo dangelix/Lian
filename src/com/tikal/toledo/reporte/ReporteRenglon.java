@@ -137,13 +137,14 @@ public class ReporteRenglon {
 		r.getCell(0).setCellValue(this.getClave());
 		r.getCell(1).setCellValue(this.getNombre());
 		r.getCell(2).setCellValue(this.getMarca());
-		r.getCell(3).setCellValue(this.getProveedor());
-		r.getCell(4).setCellValue(this.getUltimoProveedor());
-		r.getCell(5).setCellValue(this.getMedidas());
-		r.getCell(6).setCellValue(this.getCantidad());
-		r.getCell(7).setCellValue(this.getPrecioMostrador());
-		r.getCell(8).setCellValue(this.getPrecioMayoreo());
-		r.getCell(9).setCellValue(this.getPrecioCredito());
+	//	r.getCell(3).setCellValue(this.getProveedor());
+		if (this.getUltimoProveedor()==null) r.getCell(3).setCellValue("");
+		else r.getCell(3).setCellValue(this.getUltimoProveedor());
+		r.getCell(4).setCellValue(this.getMedidas());
+		r.getCell(5).setCellValue(this.getCantidad());
+		r.getCell(6).setCellValue(this.getPrecioMostrador());
+		r.getCell(7).setCellValue(this.getPrecioMayoreo());
+		r.getCell(8).setCellValue(this.getPrecioCredito());
 		
 	}
 	

@@ -554,6 +554,7 @@ public class VentaController {
 			for(Venta v:lista){
 				System.out.println("venta::"+v.getFolio());
 				for (Detalle det:v.getDetalles()){
+					System.out.println("producto::"+det.getDescripcion());
 					DetalleVentasVO d= new DetalleVentasVO();
 					d.setFecha(v.getFecha().toLocaleString());
 					d.setCliente(v.getCliente());
