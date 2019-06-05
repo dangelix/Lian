@@ -3,7 +3,9 @@ package com.tikal.toledo.controllersRest;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -59,6 +61,9 @@ public class LoteController {
 	public void add(HttpServletRequest re, HttpServletResponse rs, @RequestBody String json) throws IOException, SQLException {
 		if(Util.verificarPermiso(re, usuariodao, perfildao, 2)){
 		Lote l = (Lote) JsonConvertidor.fromJson(json, Lote.class);
+		Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
+//		cal.add(Calendar.HOUR_OF_DAY, -6);
+		l.setFecha(cal.getTime());
 		lotedao.guardar(l);
 		String s="";
 		if(l.getTipo()==0){

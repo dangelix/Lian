@@ -43,8 +43,8 @@ public class ReporteInventario {
            font1.setColor(HSSFColor.BLACK.index);
            style.setFont(font1);
 
-		String[] headers = new String[] { "CLAVE", "NOMBRE","MARCA", "PROVEEDOR", "ULTIMO PROVEEDOR", "MEDIDAS", "EXISTENCIAS","PRECIO MOSTRADOR","PRECIO MAYOREO","PRECIO CRÉDITO"};
-		int[] ws = new int[] { 256*10, 256*50,256*15,256*20,256*15, 256*10, 256*10,256*20,256*20,256*20};
+		String[] headers = new String[] { "CLAVE", "NOMBRE","MARCA", "ULTIMO PROVEEDOR", "MEDIDAS", "EXISTENCIAS","PRECIO MOSTRADOR","PRECIO MAYOREO","PRECIO CRÉDITO"};
+		int[] ws = new int[] { 256*10, 256*50,256*20,256*25, 256*15, 256*15,256*20,256*20,256*20};
 		CellStyle headerStyle = workbook.createCellStyle();
 		Font font = workbook.createFont();
 		font.setBoldweight(Font.BOLDWEIGHT_BOLD);

@@ -7,5 +7,7 @@
         <property name="idProducto" direction="asc"/>
         <property name="fecha" direction="desc"/>
     </datastore-index>
+    
+     
 
 </datastore-indexes>
