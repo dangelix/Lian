@@ -22,7 +22,8 @@ public class VentaDAOImp implements VentaDAO{
 
 	@Override
 	public List<Venta> buscar(Date fi, Date ff) {
-		List<Venta> lista= ofy().load().type(Venta.class).filter("fecha >=",fi).filter("fecha <=",ff).list();
+		System.out.println("inicio:"+fi);System.out.println("fin:"+ff);
+		List<Venta> lista= ofy().load().type(Venta.class).filter("fecha >=",fi).filter("fecha <=",ff).order("- fecha").list();
 		return lista;
 	}
 
