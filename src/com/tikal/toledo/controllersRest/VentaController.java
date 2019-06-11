@@ -50,6 +50,7 @@ import com.tikal.toledo.model.Detalle;
 import com.tikal.toledo.model.Factura;
 import com.tikal.toledo.model.Lote;
 import com.tikal.toledo.model.Producto;
+import com.tikal.toledo.model.Proveedor;
 import com.tikal.toledo.model.Tornillo;
 import com.tikal.toledo.model.Venta;
 import com.tikal.toledo.sat.cfd.Comprobante;
@@ -512,16 +513,26 @@ public class VentaController {
 			Date datef;
 			Date datei;
 			Calendar c = Calendar.getInstance();
+			c.add(Calendar.HOUR_OF_DAY, -5);
+			//l.setFecha(cal.getTime());
+			//Calendar c=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
+			System.out.println("fechaihoy:"+c.DATE);
 			datei=c.getTime();
-			c.add(Calendar.DATE, 1);
+			//c.add(Calendar.DATE, 1);
 			datef = c.getTime();
 			datei.setHours(0);
-			datei.setMinutes(1);
+			datei.setMinutes(0);
+			datei.setSeconds(0);
 			int dia1=datei.getDate();
-			
+		//	datef=datei;
+			datef.setHours(23);
+			datef.setMinutes(59);
+			datef.setSeconds(59);
 			int dia2=datef.getDate();
 //			List<Factura> lista = facturaDAO.buscar(datei, datef, rfc);
 //			Reporte rep = new Reporte(lista);
+			System.out.println("fechaijni:"+datei);
+			System.out.println("fechafinal:"+datef);
 			List<Venta> lista=ventadao.buscar(datei, datef);
 			CorteDeCaja corte= new CorteDeCaja();
 			corte.setVentas(lista);
@@ -538,11 +549,14 @@ public class VentaController {
 			Date datef;
 			Date datei;
 			Calendar c = Calendar.getInstance();
+			c.add(Calendar.HOUR_OF_DAY, -5);
+		//	Calendar c=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
 			datei=c.getTime();
-			c.add(Calendar.DATE, 1);
+		//	c.add(Calendar.DATE, 1);
 			datef = c.getTime();
 			datei.setHours(0);
-			datei.setMinutes(1);
+			datei.setMinutes(0);
+			datei.setSeconds(0);
 			int dia1=datei.getDate();
 			
 			int dia2=datef.getDate();
@@ -552,11 +566,13 @@ public class VentaController {
 			List<Venta> lista=ventadao.todos_();
 			List<DetalleVentasVO> ld= new ArrayList<DetalleVentasVO>();
 			for(Venta v:lista){
-				System.out.println("venta::"+v.getFolio());
-				for (Detalle det:v.getDetalles()){
-					System.out.println("producto::"+det.getDescripcion());
+				System.out.println("venta::"+v.getFecha());
+				Date nueva = v.getFecha();
+				nueva.setHours(nueva.getHours()-5);
+				for (Detalle det:v.getDetalles()){					
 					DetalleVentasVO d= new DetalleVentasVO();
-					d.setFecha(v.getFecha().toLocaleString());
+					System.out.println("fecha det::"+nueva.toLocaleString());
+					d.setFecha(nueva.toLocaleString());
 					d.setCliente(v.getCliente());
 					d.setFolio(v.getFolio());
 					d.setConcepto(det.getDescripcion());
@@ -832,4 +848,23 @@ public class VentaController {
 		return monto;
 	}
 	
+	@RequestMapping(value = { "/magia" }, method = RequestMethod.GET)
+	public void magy(HttpServletRequest re, HttpServletResponse rs) throws IOException, SQLException {
+		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2,0)){
+//		System.out.println("----------");
+//		List<Venta>  ventas= ventadao.todos_();
+//		for(Venta v:ventas){
+//		//	List<Lote> lotes = lotedao.porProducto(p.getId());
+//			if (v.getFolio()>0){	
+//				Proveedor pr=pdao.cargar(lotes.get(0).getProveedor());
+//				
+//				if (pr!=null)	p.setUltimoProveedor(pr.getNombre());
+//				else p.setUltimoProveedor("-");
+//				hdao.guardar(p);
+//			}
+//		}
+	
+		
+	}
+
 }

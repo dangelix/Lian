@@ -20,6 +20,7 @@ public class DetalleVentasVO {
 	private String concepto;
 	private double cantidad;
 	private String unidad;	
+	private String marca;
 	private double precio;
 	private double importe;
 	private String formaPago;
@@ -35,6 +36,18 @@ public class DetalleVentasVO {
 
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
+	}
+
+
+
+	public String getMarca() {
+		return marca;
+	}
+
+
+
+	public void setMarca(String marca) {
+		this.marca = marca;
 	}
 
 
@@ -159,6 +172,7 @@ public class DetalleVentasVO {
 		r.getCell(1).setCellValue(this.getCliente());
 		r.getCell(2).setCellValue(this.getFolio());
 		r.getCell(3).setCellValue(this.getConcepto());
+	//	r.getCell(3).setCellValue(this.getMarca());
 		r.getCell(4).setCellValue(this.getUnidad());
 		r.getCell(5).setCellValue(this.getCantidad());		
 		r.getCell(6).setCellValue(this.getPrecio());

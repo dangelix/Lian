@@ -40,7 +40,11 @@ public class LoteVO {
 	
 	public LoteVO(Lote l, String nomProd, String unidad, float exis){
 		DateFormat formato = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+		Date nueva = l.getFecha();
+		nueva.setHours(nueva.getHours()-5);
 		
+		System.out.println("fecha menos 5 horas:"+nueva);
+		l.setFecha(nueva);
 		this.fecha= l.getFecha().toLocaleString();
 		this.idLote=l.getId().toString();
 		this.cantidad=l.getCantidad();
