@@ -2,8 +2,8 @@
 	<div class="row">
 		<div class="col-md-9">
 			<div class="row">
-				<form class="form-inline" style="text-align: left">
-					<div class="form-group col-md-6">
+				<div class="form-inline" style="text-align: left">
+					<div class="form-group col-md-5">
 						<label for="email">Cliente:</label> <select
 							class="form-control input-sm" ng-model="indice"
 							style="width: inherit;">
@@ -13,12 +13,14 @@
 						<button class="btn btn-primary" ng-click="cargaClientes()"><i class="glyphicon glyphicon-refresh" aria-hidden="true"></i></button>
 					</div>
 					<div class="form-group col-md-6">
-						<div class="row" style="padding-left: 60px">
-							<select class="form-control input-sm" ng-model="busquedas.tipo" style="width: inherit;">
-								<option selected>Articulos</option>
-							<!-- 	<option>Tornillos</option> -->
-							</select>
-						</div>
+<!-- 						<div class="row" style="padding-left: 60px"> -->
+<!-- 							<select class="form-control input-sm" ng-model="busquedas.tipo" style="width: inherit;"> -->
+<!-- 								<option selected>Articulos</option> -->
+<!-- 								<option>Tornillos</option> -->
+<!-- 							</select> -->
+<!-- 						</div> -->
+						<div class="form-inline">
+						<form>
 						<label for="email">Buscar:</label> <input type="text"
 							class="form-control input-sm" id="buscar"
 							ng-model="busquedas.buscar">
@@ -31,8 +33,12 @@
 							ng-click="cargarPagina(1)">
 							<span class="glyphicon glyphicon-eye-open"></span>
 						</button>
-					</div>
-				</form>
+						</form>
+						
+						</div>
+						
+						</div>
+				</div>
 			</div>
 			<div class="row">
 				<table class="table table-striped">
@@ -54,7 +60,7 @@
 							<td>{{producto.clave}}</td>
 							<td>{{producto.nombre}}</td>
 							<td>{{producto.medidas}}</td>
-							<td><select ng-model="producto.precio" ng-change="producto.importe= calculaImporte(producto)">
+							<td><select id="precios" ng-model="producto.precio" ng-change="producto.importe= calculaImporte(producto)">
 									<option ng-value="producto.precioMostrador">Mostrador</option>
 									<option ng-value="producto.precioMayoreo">Mayoreo</option>
 									<option ng-value="producto.precioCredito">Cr&eacute;dito</option>
@@ -99,12 +105,12 @@
 						<tr ng-repeat="det in venta.detalles">
 							<td>{{det.descripcion}}</td>
 							<td>{{det.cantidad}}</td>
-							<td>{{det.importe}}</td>
+							<td>{{det.importe | currency}}</td>
 							<td><a ng-click="quitaConcepto($index)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
 						</tr>
 						<tr><td><b>Total</b></td>
 							<td></td>
-							<td>{{venta.total}}</td>
+							<td>{{venta.total | currency}}</td>
 						</tr>
 						<tr ng-show="venta.descuento>0"><td><input type="checkbox" ng-click="calculaDesc()" ng-model="descuento" >Aplicar Descuento</td></tr>
 					</tbody>

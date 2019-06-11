@@ -221,7 +221,14 @@ app.controller("ventaController",['$window','clientesService','ventasService','t
 		}
 		
 	}
-	
+	$scope.setCants = function(){
+		for(i in $scope.productos){
+		
+			$scope.productos[i].precio = $scope.productos[i].precioMostrador;
+			$scope.productos[i].cantidad = 1;
+			$scope.productos[i].importe= $scope.calculaImporte($scope.productos[i])
+		}
+	}
 	$scope.cargarPagina=function(pag){
 		if($scope.paginaActual!=pag){
 			$scope.paginaActual=pag;
@@ -351,12 +358,15 @@ app.controller("ventaController",['$window','clientesService','ventasService','t
 				herramientasService.busqueda(buscar.buscar).then(function(data) {
 					// $scope.herramientas = data;
 					$scope.productos=data;
+					$scope.setCants();
 					$scope.botonBuscar=false;
+					
 				});
 			}else{
 				tornillosService.busqueda(buscar.buscar).then(
 						function(data) {
 							$scope.productos = data;
+							$scope.setCants();
 							$scope.botonBuscar=false;
 						});
 			}
@@ -375,6 +385,7 @@ app.controller("ventaController",['$window','clientesService','ventasService','t
 		for(var i =0; i<data[0].length;i++){
 			$scope.productos.push(data[0][i]);
 		}
+		$scope.setCants();
 		$scope.llenarPags();
 	})
 	}
@@ -397,7 +408,7 @@ app.controller("ventaController",['$window','clientesService','ventasService','t
 			ventasService.addVenta($scope.venta).then(function(data){
 				alert("La venta ha sido guardada");
 				$location.path('/ventasList');
-				$window.location.reload();
+//				$window.location.reload();
 			});
 		}
 	}

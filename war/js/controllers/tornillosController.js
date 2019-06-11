@@ -136,7 +136,7 @@ app.controller("tornillosController",[
 		tornillosService.registraTornillos(newTornillo).then(function(newTornillo) {
 					alert("Tornillo Agregado");
 //					$window.location.reload();
-//					$location.path("/tornillos");
+					$location.path("/tornillos");
 				})
 	}
 	$scope.cargaTornillos = function(page) {
@@ -205,7 +205,7 @@ app.controller("tornillosEditController",[
 			console.log(newTornillo);		
 			tornillosService.registraTornillos(newTornillo).then(function(newTornillo) {
 						alert("Tornillo Modificado");
-						$window.location.reload();
+//						$window.location.reload();
 						$location.path("/tornillos");
 					})
 		}
