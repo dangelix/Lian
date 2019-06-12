@@ -27,12 +27,14 @@
 							<thead>
 								<tr>
 									<th>Articulo</th>
+									<th>Fecha</th>
 									<th>Alerta</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr ng-repeat="alerta in alertas" class="odd gradeX">
 									<td>{{alerta.nombre}}</td>
+									<td>{{alerta.fecha | date}}</td>
 									<td>{{alerta.alerta}}</td>
 								</tr>
 							</tbody>
