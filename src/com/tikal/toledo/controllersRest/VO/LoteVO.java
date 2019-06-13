@@ -12,6 +12,7 @@ import com.tikal.toledo.model.Lote;
 
 public class LoteVO {
 	private String nombre;
+	private String marca;
 	private String idLote;
 	private String nombreProducto;
 	private String fecha;
@@ -38,7 +39,7 @@ public class LoteVO {
 		
 	}
 	
-	public LoteVO(Lote l, String nomProd, String unidad, float exis){
+	public LoteVO(Lote l, String nomProd,String marca, String unidad, float exis){
 		DateFormat formato = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 		Date nueva = l.getFecha();
 		nueva.setHours(nueva.getHours()-5);
@@ -52,6 +53,7 @@ public class LoteVO {
 		this.nombreProducto=nomProd;
 		this.unidad= unidad;
 		this.existencia=exis;
+		this.marca=marca;
 		
 	}
 	
@@ -61,6 +63,15 @@ public class LoteVO {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
 	public String getFecha() {
 		return fecha;
 	}
@@ -133,16 +144,17 @@ public class LoteVO {
 	}
 
 	public void llenarRenglonLotes(HSSFRow r){
-		for(int i=0;i<11;i++){
+		for(int i=0;i<7;i++){
 			r.createCell(i);
 		}
 		
 		r.getCell(0).setCellValue(this.getIdLote());
 		r.getCell(1).setCellValue(this.getNombreProducto());
-		r.getCell(2).setCellValue(this.getUnidad());
-		r.getCell(3).setCellValue(this.getFecha());
-		r.getCell(4).setCellValue(this.getCosto());
-		r.getCell(5).setCellValue(this.getExistencia());
+		r.getCell(2).setCellValue(this.getMarca());
+		r.getCell(3).setCellValue(this.getUnidad());
+		r.getCell(4).setCellValue(this.getFecha());
+		r.getCell(5).setCellValue(this.getCosto());
+		r.getCell(6).setCellValue(this.getExistencia());
 		
 			
 //		if(this.factura!=null){

@@ -33,8 +33,8 @@ import com.tikal.toledo.controllersRest.VO.LoteVO;
 			HSSFSheet sheet = workbook.createSheet();
 			workbook.setSheetName(0, "Hoja excel");
 
-			String[] headers = new String[] { "Lote", "Producto", "Unidad ","Fecha Lote", "Costo","Cantidad"};
-			Integer[] wd =                   {256*22,   256*70  ,  256*15,   256*25,     256*25,    256*15 };   
+			String[] headers = new String[] { "Lote", "Producto", "Marca", "Unidad ","Fecha Lote", "Costo","Cantidad"};
+			Integer[] wd =                   {256*22,   256*70  ,256*20,  256*15,   256*25,     256*25,    256*15 };   
 			
 			 Row fila = sheet.createRow(4);
 			CellStyle headerStyle = workbook.createCellStyle();

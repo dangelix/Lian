@@ -8,6 +8,7 @@ public class Detalle {
 	private String descripcion;
 	private Long idProducto;
 	private double cantidad;
+	private String marca;
 	private double precioUnitario;
 	private double importe;
 	private int tipo;
@@ -64,6 +65,12 @@ public class Detalle {
 	}
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
+	}
+	public String getMarca() {
+		return marca;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
 	}
 	
 }

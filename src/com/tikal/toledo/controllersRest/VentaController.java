@@ -149,6 +149,7 @@ public class VentaController {
 					d.setPrecioUnitario(d.getTotal()/d.getCantidad());
 				}
 				monto+= d.getTotal();
+				d.setMarca(productodao.cargar(d.getIdProducto()).getMarca());
 			}
 			l.setMonto(monto);
 			if(l.getEstatus().compareTo("GENERADO")!=0){
@@ -576,6 +577,7 @@ public class VentaController {
 					d.setCliente(v.getCliente());
 					d.setFolio(v.getFolio());
 					d.setConcepto(det.getDescripcion());
+					d.setMarca(det.getMarca());
 					d.setUnidad(det.getUnidad());
 					d.setCantidad(det.getCantidad());
 					d.setPrecio(det.getPrecioUnitario());
@@ -627,10 +629,16 @@ public class VentaController {
 					//System.out.println("p.getNombre:"+p.getNombre());
 				
 					String des=p.getNombre();
+					String marca=p.getMarca();
 					if (des==null){
 						des="--";
 					}else{
 						System.out.println("p.getNombre:"+p.getNombre());
+					}
+					if (marca==null){
+						marca="--";
+					}else{
+						System.out.println("p.marca:"+p.getMarca());
 					}
 					String uni="-";
 					if (p.getUnidadSat()!=null){
@@ -644,7 +652,7 @@ public class VentaController {
 					System.out.println("pnombre:"+des);
 					System.out.println("punidad:"+p.getUnidadSat());
 					System.out.println("cantidadlote:"+l.getCantidad());
-					LoteVO lov= new LoteVO(l,des,uni, l.getCantidad());
+					LoteVO lov= new LoteVO(l,des,marca,uni, l.getCantidad());
 					System.out.println("loteVO:"+lov);
 					lista.add(lov);
 					System.out.println("---lista:"+lista);
@@ -672,7 +680,7 @@ public class VentaController {
 						System.out.println("tnombre:"+des);
 						System.out.println("tunidad:"+t.getUnidadSat());
 						System.out.println("almapexis:"+l.getCantidad());
-						LoteVO lov= new LoteVO(l,des, uni, l.getCantidad());
+						LoteVO lov= new LoteVO(l,des,"-", uni, l.getCantidad());
 						System.out.println("loteVO:"+lov);
 						lista.add(lov);
 						System.out.println("---lista:"+lista);
@@ -692,6 +700,7 @@ public class VentaController {
 	
 	private float incrementarInventario(List<Detalle> detalles) throws SQLException{
 		float monto=0;
+		Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
 		for(Detalle d:detalles){
 			if(d.getTipo()==0){
 				Producto p= productodao.cargar(d.getIdProducto());
@@ -706,20 +715,26 @@ public class VentaController {
 				}
 				lotedao.guardarLotes(lista);
 				productodao.guardar(p);
+			
 				if(p.getMinimo()!=0){
 					AlertaInventario c=alertadao.consultar(p.getId());
 					if(c==null){
 					if(p.getExistencia()< p.getMinimo()){
 						AlertaInventario a= new AlertaInventario();
+						
+//						cal.add(Calendar.HOUR_OF_DAY, -6);
+						//l.setFecha(cal.getTime());
 						a.idproducto=p.getId();
 						a.nombre=p.getNombre();
 						a.alerta="Inventario por debajo del mínimo";
+						a.fecha=cal.getTime();
 						alertadao.add(a);
 					}else{if(p.getExistencia() < (p.getMinimo()*1.10)){
 						AlertaInventario a= new AlertaInventario();
 						a.idproducto=p.getId();
 						a.nombre=p.getNombre();
 						a.alerta="Inventario a punto de llegar al mínimo";
+						a.fecha=cal.getTime();
 						alertadao.add(a);
 					}}
 					}
@@ -745,12 +760,14 @@ public class VentaController {
 						a.idproducto=p.getId();
 						a.nombre=p.getNombre();
 						a.alerta="Inventario por debajo del mínimo";
+						a.fecha=cal.getTime();
 						alertadao.add(a);
 					}else{if(p.getExistencia() < (p.getMinimo()*1.10)){
 						AlertaInventario a= new AlertaInventario();
 						a.idproducto=p.getId();
 						a.nombre=p.getNombre()+" "+p.getMedidas();
 						a.alerta="Inventario a punto de llegar al mínimo";
+						a.fecha=cal.getTime();
 						alertadao.add(a);
 					}}
 					}
@@ -766,6 +783,7 @@ public class VentaController {
 	
 	private float actualizarInventario(List<Detalle> detalles) throws SQLException{
 		float monto=0;
+		Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("America/Mexico_City"));
 		for(Detalle d:detalles){
 			if(d.getTipo()==0){
 				Producto p= productodao.cargar(d.getIdProducto());
@@ -793,12 +811,14 @@ public class VentaController {
 						a.idproducto=p.getId();
 						a.nombre=p.getNombre();
 						a.alerta="Inventario por debajo del mínimo";
+						a.fecha=cal.getTime();
 						alertadao.add(a);
 					}else{if(p.getExistencia() < (p.getMinimo()*1.10)){
 						AlertaInventario a= new AlertaInventario();
 						a.idproducto=p.getId();
 						a.nombre=p.getNombre();
 						a.alerta="Inventario a punto de llegar al mínimo";
+						a.fecha=cal.getTime();
 						alertadao.add(a);
 					}}
 					}
@@ -829,12 +849,14 @@ public class VentaController {
 						a.idproducto=p.getId();
 						a.nombre=p.getNombre();
 						a.alerta="Inventario por debajo del mínimo";
+						a.fecha=cal.getTime();
 						alertadao.add(a);
 					}else{if(p.getExistencia() < (p.getMinimo()*1.10)){
 						AlertaInventario a= new AlertaInventario();
 						a.idproducto=p.getId();
 						a.nombre=p.getNombre()+" "+p.getMedidas();
 						a.alerta="Inventario a punto de llegar al mínimo";
+						a.fecha=cal.getTime();
 						alertadao.add(a);
 					}}
 					}
@@ -848,23 +870,5 @@ public class VentaController {
 		return monto;
 	}
 	
-	@RequestMapping(value = { "/magia" }, method = RequestMethod.GET)
-	public void magy(HttpServletRequest re, HttpServletResponse rs) throws IOException, SQLException {
-		//if(Util.verificarPermiso(re, usuariodao, perfildao, 2,0)){
-//		System.out.println("----------");
-//		List<Venta>  ventas= ventadao.todos_();
-//		for(Venta v:ventas){
-//		//	List<Lote> lotes = lotedao.porProducto(p.getId());
-//			if (v.getFolio()>0){	
-//				Proveedor pr=pdao.cargar(lotes.get(0).getProveedor());
-//				
-//				if (pr!=null)	p.setUltimoProveedor(pr.getNombre());
-//				else p.setUltimoProveedor("-");
-//				hdao.guardar(p);
-//			}
-//		}
 	
-		
-	}
-
 }

@@ -164,7 +164,7 @@ public class DetalleVentasVO {
 	
 	
 	public void llenarRenglon(HSSFRow r){
-		for(int i=0;i<10;i++){
+		for(int i=0;i<11;i++){
 			r.createCell(i);
 		}
 		
@@ -172,17 +172,17 @@ public class DetalleVentasVO {
 		r.getCell(1).setCellValue(this.getCliente());
 		r.getCell(2).setCellValue(this.getFolio());
 		r.getCell(3).setCellValue(this.getConcepto());
-	//	r.getCell(3).setCellValue(this.getMarca());
-		r.getCell(4).setCellValue(this.getUnidad());
-		r.getCell(5).setCellValue(this.getCantidad());		
-		r.getCell(6).setCellValue(this.getPrecio());
-		r.getCell(7).setCellValue(this.getImporte());
-		r.getCell(8).setCellValue(this.getFormaPago());
-	//	r.getCell(9).setCellValue(this.getFacturado());
+		r.getCell(4).setCellValue(this.getMarca());
+		r.getCell(5).setCellValue(this.getUnidad());
+		r.getCell(6).setCellValue(this.getCantidad());		
+		r.getCell(7).setCellValue(this.getPrecio());
+		r.getCell(8).setCellValue(this.getImporte());
+		r.getCell(9).setCellValue(this.getFormaPago());
+		r.getCell(10).setCellValue(this.getFacturado());
 		if(this.facturado!=null){
-			r.getCell(9).setCellValue(this.getFacturado());
+			r.getCell(10).setCellValue(this.getFacturado());
 		}else{
-				r.getCell(9).setCellValue("No facturado");
+				r.getCell(10).setCellValue("No facturado");
 		}
 		
 	

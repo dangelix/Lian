@@ -111,11 +111,12 @@ public class LoteController {
 				System.out.println("dddd");
 				for (Lote l : lotes) {
 					Producto h = hdao.cargar(l.getIdProducto());
+					String marca=h.getMarca();
 					if (h != null) {	
 						String nomProd= hdao.cargar(l.getIdProducto()).getNombre();
 						String uni=hdao.cargar(l.getIdProducto()).getUnidadSat();
 						float exi=hdao.cargar(l.getIdProducto()).getExistencia();
-						LoteVO lvo = new LoteVO(l,nomProd,uni, exi);
+						LoteVO lvo = new LoteVO(l,nomProd,marca,uni, exi);
 						if (l.getProveedor() != null) {
 							Proveedor p = pdao.cargar(l.getProveedor());
 							lvo.setProveedor(p.getNombre());
@@ -126,7 +127,7 @@ public class LoteController {
 						String nomProd= tdao.cargar(l.getIdProducto()).getNombre();
 						String uni=tdao.cargar(l.getIdProducto()).getUnidadSat();
 						float exi=tdao.cargar(l.getIdProducto()).getExistencia();
-						LoteVO lvo = new LoteVO(l,nomProd, uni, exi);
+						LoteVO lvo = new LoteVO(l,nomProd,"-", uni, exi);
 						if (l.getProveedor() != null) {
 							Proveedor p = pdao.cargar(l.getProveedor());
 							lvo.setProveedor(p.getNombre());

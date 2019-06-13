@@ -35,15 +35,15 @@ public class DetalleVentas {
 
 		
 		System.out.println("listaaaaa:"+ventas);
-		String[] headers = new String[] { "Fecha","Cliente", "Folio","Concepto","Unidad","Cantidad","Precio","Importe", "Forma de Pago", "Facturado"};
-		Integer[] wd =                   {256*25,   256*20  ,  256*8, 256*60, 256*8,  256*10,       256*15,    256*20, 256*15, 256*15 };   
+		String[] headers = new String[] { "Fecha","Cliente", "Folio","Concepto","Marca","Unidad","Cantidad","Precio","Importe", "Forma de Pago", "Facturado"};
+		Integer[] wd =                   {256*25,   256*20  , 256*8, 256*60, 256*20, 256*8,  256*10,       256*15,    256*20, 256*15, 256*15 };   
 		CellStyle headerStyle = workbook.createCellStyle();
 		Font font = workbook.createFont();
 		font.setBoldweight(Font.BOLDWEIGHT_BOLD);
 		headerStyle.setFont(font);
 
         HSSFRow headerRow = sheet.createRow(0);
-        for (int i = 0; i <10; ++i) {
+        for (int i = 0; i <11; ++i) {
             String header = headers[i];
             HSSFCell cell = headerRow.createCell(i);
             cell.setCellStyle(headerStyle);
