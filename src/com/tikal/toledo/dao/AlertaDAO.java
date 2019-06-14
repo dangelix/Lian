@@ -17,4 +17,5 @@ public interface AlertaDAO {
 	void delete(AlertaInventario a);
 	
 	AlertaInventario consultar(Long id);
+	AlertaInventario getById(Long id);
 }

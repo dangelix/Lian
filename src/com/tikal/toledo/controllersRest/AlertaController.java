@@ -59,7 +59,7 @@ public class AlertaController {
 	public void resAlertas(HttpServletRequest re, HttpServletResponse rs, @PathVariable Long idAlerta) throws IOException{
 		if(Util.verificarsesion(re)){
 			AsignadorDeCharset.asignar(re, rs);
-			AlertaInventario a= alertadao.consultar(idAlerta);
+			AlertaInventario a= alertadao.getById(idAlerta);
 			a.estatus=false;
 			alertadao.guardar(a);
 			rs.getWriter().print("alerta deshabilitada...");

@@ -43,5 +43,11 @@ public class AlertaDAOImp implements AlertaDAO{
 		}
 		return null;
 	}
+	
+	@Override
+	public AlertaInventario getById(Long id) {
+		return ofy().load().type(AlertaInventario.class).id(id).now();
+		
+	}
 
 }
