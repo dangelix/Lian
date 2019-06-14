@@ -4,6 +4,7 @@ import java.util.List;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 import com.tikal.toledo.dao.AlertaDAO;
 import com.tikal.toledo.model.AlertaInventario;
+import com.tikal.toledo.model.Cliente;
 
 public class AlertaDAOImp implements AlertaDAO{
 
@@ -13,7 +14,18 @@ public class AlertaDAOImp implements AlertaDAO{
 	}
 
 	@Override
+	public void guardar(AlertaInventario a) {
+		ofy().save().entity(a).now();
+	}
+	
+	@Override
 	public List<AlertaInventario> consultar() {
+		
+		return ofy().load().type(AlertaInventario.class).filter("estatus",true).list();
+	}
+	
+	@Override
+	public List<AlertaInventario> consultarAll() {
 		
 		return ofy().load().type(AlertaInventario.class).list();
 	}

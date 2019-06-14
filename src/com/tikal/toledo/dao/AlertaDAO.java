@@ -8,7 +8,11 @@ public interface AlertaDAO {
 
 	void add(AlertaInventario a);
 	
+	void guardar(AlertaInventario a);
+	
 	List<AlertaInventario> consultar();
+	
+	List<AlertaInventario> consultarAll();
 	
 	void delete(AlertaInventario a);
 	

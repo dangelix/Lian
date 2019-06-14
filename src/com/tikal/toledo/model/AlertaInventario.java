@@ -14,5 +14,5 @@ public class AlertaInventario {
 	public String nombre;
 	public String alerta;
 	public Date fecha;
-	
+	@Index public Boolean estatus;
 }

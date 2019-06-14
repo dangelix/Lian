@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -43,13 +44,25 @@ public class AlertaController {
 	@Autowired
 	PerfilDAO perfildao;
 
-	@RequestMapping(value = {
-	"/numAlertas" }, method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = {"/numAlertas" }, method = RequestMethod.GET, produces = "application/json")
 	public void numAlertas(HttpServletRequest re, HttpServletResponse rs) throws IOException{
 		if(Util.verificarsesion(re)){
-		AsignadorDeCharset.asignar(re, rs);
-		List<AlertaInventario> lista= alertadao.consultar();
-		rs.getWriter().print(lista.size());
+			AsignadorDeCharset.asignar(re, rs);
+			List<AlertaInventario> lista= alertadao.consultar();
+			rs.getWriter().print(lista.size());
+		}else{
+			rs.sendError(403);
+		}
+	}
+	
+	@RequestMapping(value = {"/resAlerta/{idAlerta}" }, method = RequestMethod.GET, produces = "application/json")
+	public void resAlertas(HttpServletRequest re, HttpServletResponse rs, @PathVariable Long idAlerta) throws IOException{
+		if(Util.verificarsesion(re)){
+			AsignadorDeCharset.asignar(re, rs);
+			AlertaInventario a= alertadao.consultar(idAlerta);
+			a.estatus=false;
+			alertadao.guardar(a);
+			rs.getWriter().print("alerta deshabilitada...");
 		}else{
 			rs.sendError(403);
 		}
@@ -64,5 +77,19 @@ public class AlertaController {
 		rs.getWriter().println(JsonConvertidor.toJson(lista));
 	}
 	
+	@RequestMapping(value = {"/magyc" }, method = RequestMethod.GET, produces = "application/json")
+	public void magyc(HttpServletRequest re, HttpServletResponse rs) throws IOException{
+		//if(Util.verificarsesion(re)){
+			AsignadorDeCharset.asignar(re, rs);
+			List<AlertaInventario> lista= alertadao.consultarAll();
+			for (AlertaInventario a:lista){
+				a.estatus=true;
+				alertadao.guardar(a);
+			}
+			rs.getWriter().print("alertas habilitadas...");
+//		}else{
+//			rs.sendError(403);
+//		}
+	}
 	
 }

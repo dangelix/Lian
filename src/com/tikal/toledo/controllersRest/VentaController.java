@@ -728,6 +728,7 @@ public class VentaController {
 						a.nombre=p.getNombre();
 						a.alerta="Inventario por debajo del mínimo";
 						a.fecha=cal.getTime();
+						a.estatus=true;
 						alertadao.add(a);
 					}else{if(p.getExistencia() < (p.getMinimo()*1.10)){
 						AlertaInventario a= new AlertaInventario();
@@ -735,6 +736,7 @@ public class VentaController {
 						a.nombre=p.getNombre();
 						a.alerta="Inventario a punto de llegar al mínimo";
 						a.fecha=cal.getTime();
+						a.estatus=true;
 						alertadao.add(a);
 					}}
 					}
@@ -761,6 +763,7 @@ public class VentaController {
 						a.nombre=p.getNombre();
 						a.alerta="Inventario por debajo del mínimo";
 						a.fecha=cal.getTime();
+						a.estatus=true;
 						alertadao.add(a);
 					}else{if(p.getExistencia() < (p.getMinimo()*1.10)){
 						AlertaInventario a= new AlertaInventario();
@@ -768,6 +771,7 @@ public class VentaController {
 						a.nombre=p.getNombre()+" "+p.getMedidas();
 						a.alerta="Inventario a punto de llegar al mínimo";
 						a.fecha=cal.getTime();
+						a.estatus=true;
 						alertadao.add(a);
 					}}
 					}
@@ -812,6 +816,7 @@ public class VentaController {
 						a.nombre=p.getNombre();
 						a.alerta="Inventario por debajo del mínimo";
 						a.fecha=cal.getTime();
+						a.estatus=true;
 						alertadao.add(a);
 					}else{if(p.getExistencia() < (p.getMinimo()*1.10)){
 						AlertaInventario a= new AlertaInventario();
@@ -819,6 +824,7 @@ public class VentaController {
 						a.nombre=p.getNombre();
 						a.alerta="Inventario a punto de llegar al mínimo";
 						a.fecha=cal.getTime();
+						a.estatus=true;
 						alertadao.add(a);
 					}}
 					}
@@ -850,6 +856,7 @@ public class VentaController {
 						a.nombre=p.getNombre();
 						a.alerta="Inventario por debajo del mínimo";
 						a.fecha=cal.getTime();
+						a.estatus=true;
 						alertadao.add(a);
 					}else{if(p.getExistencia() < (p.getMinimo()*1.10)){
 						AlertaInventario a= new AlertaInventario();
@@ -857,6 +864,7 @@ public class VentaController {
 						a.nombre=p.getNombre()+" "+p.getMedidas();
 						a.alerta="Inventario a punto de llegar al mínimo";
 						a.fecha=cal.getTime();
+						a.estatus=true;
 						alertadao.add(a);
 					}}
 					}
