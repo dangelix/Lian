@@ -29,6 +29,7 @@
 									<th>Articulo</th>
 									<th>Fecha</th>
 									<th>Alerta</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -36,6 +37,9 @@
 									<td>{{alerta.nombre}}</td>
 									<td>{{alerta.fecha | date}}</td>
 									<td>{{alerta.alerta}}</td>
+									<td> <button type="button" class="btn btn-success" ng-click="readAlert(alerta.id)">
+          <span class="glyphicon glyphicon-ok"></span> 
+        </button></td>
 								</tr>
 							</tbody>
 						</table>
