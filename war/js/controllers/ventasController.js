@@ -253,7 +253,6 @@ app.controller("ventaController",['$window','clientesService','ventasService','t
 			for(i in $scope.clientes);{
 				if($scope.clientes[i].nombre == "Publico en general"){
 				$scope.indice = i;
-				break;
 			}
 			}
 			

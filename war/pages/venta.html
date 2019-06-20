@@ -8,7 +8,7 @@
 							class="form-control input-sm" ng-model="indice"
 							style="width: inherit;">
 							<option value="-1">Otro...</option>
-							<option ng-repeat="cliente in clientes" ng-selected="{{$index == indice}}" value="{{$index}}">{{cliente.nombre}}</option>
+							<option ng-repeat="cliente in clientes" value="{{$index}}">{{cliente.nombre}}</option>
 						</select>
 						<button class="btn btn-primary" ng-click="cargaClientes()"><i class="glyphicon glyphicon-refresh" aria-hidden="true"></i></button>
 					</div>
