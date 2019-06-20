@@ -59,6 +59,7 @@
 							id="dataTables-example">
 							<thead>
 								<tr>
+									<th>Folio</th>
 									<th>Fecha</th>
 									<th>Cliente</th>
 									<th>Monto</th>
@@ -70,6 +71,7 @@
 
 							<tbody>
 								<tr ng-repeat="venta in ventas" class="odd gradeX">
+									<td>{{venta.folio}}</td>
 									<td>{{venta.fechaString}}</td>
 									<td>{{venta.cliente}}</td>
 									<td>{{venta.monto}}</td>
