@@ -250,6 +250,13 @@ app.controller("ventaController",['$window','clientesService','ventasService','t
 	$scope.cargaClientes=function(){
 		clientesService.findClientesFull().then(function(data){
 			$scope.clientes=data;
+			for(i in $scope.clientes);{
+				if($scope.clientes[i].nombre == "Publico en general"){
+				$scope.indice = i;
+				break;
+			}
+			}
+			
 		})
 	}
 	
